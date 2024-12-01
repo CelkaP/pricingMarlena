@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokonaj płatności</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f0fe;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #3a7ca5;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .payment-container {
+            background-color: #f0f8ff;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .payment-container h2 {
+            color: #3a7ca5;
+            margin-bottom: 20px;
+        }
+
+        .details {
+            font-size: 16px;
+            color: #444;
+            text-align: left;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #3a7ca5;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="history.back()">&lt; back</button>
+
+    <div class="payment-container">
+        <h2>Szczegóły płatności</h2>
+        <p class="details">
+            Aby dokończyć twoje zamówienie, dokonaj przelewu na:<br><br>
+            Numer konta: <span class="highlight">99-0000-1111-2222-3333-4444</span><br><br>
+            Kwota: <span class="highlight" id="payment-amount"></span><br><br>
+            Tytuł: <span class="highlight">Twoje imię i nazwisko</span><br><br>
+            W razie jakichkolwiek pytań, nie wahaj się pisać na:<br>
+            Email: <span class="highlight">email@email.com</span><br>
+            Instagram: <span class="highlight">instagram.com/user</span>
+        </p>
+    </div>
+
+    <script>
+        // Pobierz parametry URL (kwota pakietu)
+        const params = new URLSearchParams(window.location.search);
+        const price = params.get('price');
+
+        // Ustaw kwotę w kontenerze płatności
+        document.getElementById('payment-amount').innerText = price + ' PLN';
+    </script>
+
+</body>
+</html>
