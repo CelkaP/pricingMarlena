@@ -3,245 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pakiety Usług</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e8f0fe;  /* Pastelowy niebieski */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .switch-container {
-            display: flex;
-            align-items: center;
-            font-size: 18px;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        .switch-label {
-            margin: 0 10px;
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider::before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #6ab04c;  /* Zielony kolor */
-        }
-
-        input:checked + .slider::before {
-            transform: translateX(26px);
-        }
-
-        .active-label {
-            color: #333;
-            font-weight: bold;
-        }
-
-        .pricing-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .pricing-box {
-            background-color: #f0f8ff;  /* Bardzo jasny niebieski */
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 260px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            height: 580px;
-            box-sizing: border-box;
-        }
-
-        .pricing-box.center {
-            transform: scale(1.05);
-        }
-
-        .pricing-box-header {
-            border-radius: 15px;
-            background-color: #87ceeb;  /* Pastelowy niebieski nagłówek */
-            color: #fff;
-            padding: 10px;
-            font-size: 18px;
-        }
-
-        .savings {
-            color: #3a7ca5;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .price {
-            font-size: 32px;
-            margin: 10px 0;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .packageDesc {
-            font-size: 14px;
-            font-weight: bold;
-            background-color: #dbeeff;
-            padding: 10px 15px;
-            border-radius: 15px;
-            margin: 10px 0;
-            color: #555;
-        }
-
-        .features {
-            list-style: none;
-            padding: 0;
-            flex-grow: 1;
-        }
-
-        .features li {
-            margin: 8px 0;
-            font-size: 14px;
-            color: #444;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #3a7ca5;  /* Pastelowy niebieski */
-            color: #fff;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: auto;
-        }
-    </style>
+    <title>Pakiety Dietetyczne</title>
+    <link rel="stylesheet" href="indexStyles.css">
 </head>
 <body>
+    <!-- Ikona do ponownego otwarcia okna -->
+    <img src="gifs/notification.gif" alt="Notification Icon" class="notification-icon" onclick="openModal()">
 
-    <div class="switch-container">
-        <span id="monthly-label" class="switch-label active-label">Płatność miesięczna</span>
-        <label class="switch">
-            <input type="checkbox" id="payment-toggle" onclick="togglePayment()" checked>
-            <span class="slider"></span>
-        </label>
-        <span id="upfront-label" class="switch-label">Płatność za 3 msc</span>
+    <div id="app">
+        <button class="back-button" id="back-button" onclick="goBack()">&lt; Powrót</button>
+        <h1 id="main-title">Wybierz Kategorię</h1>
+        <div class="categories-container" id="categories-container">
+            <div class="category-box" onclick="loadCategory('dieta')">Dieta</div>
+            <div class="category-box" onclick="loadCategory('dieta-trening')">Dieta + Plan Treningowy</div>
+            <div class="category-box" onclick="loadCategory('jednorazowe')">Jednorazowe</div>
+            <br>
+            <div class="category-box" onclick="loadResults()">Co możesz osiągnąć?</div>
+        </div>
+
+        <div class="pricing-container hidden" id="pricing-container"></div>
     </div>
-    
-    <div class="pricing-container">
-        <div class="pricing-box">
-            <h2 class="pricing-box-header">Podstawowy</h2>
-            <div class="savings" id="basic-savings"></div>
-            <div class="price" id="basic-price">597 PLN</div>
-            <p class="packageDesc">Podstawowe wsparcie dietetyczne</p>
-            <ul class="features">
-                <li>✔️ Indywidualny jadłospis dopasowany do celów</li>
-                <li>✔️ Gotowa lista zakupów</li>
-                <li>✔️ 1 korekta jadłospisu w miesiącu</li>
-                <li>✔️ Cotygodniowe raporty i kontrola postępów</li>
-                <li>✔️ Stały kontakt</li>
-            </ul>
-            <a href="#" class="button" onclick="redirectToPayPage('basic')">Zamów teraz</a>
-        </div>
-        
-        <div class="pricing-box center">
-            <h2 class="pricing-box-header">Klasyczny</h2>
-            <div class="savings" id="classic-savings"></div>
-            <div class="price" id="classic-price">898 PLN</div>
-            <p class="packageDesc">Idealne połączenie diety z indywidualnym planem treningowym</p>
-            <ul class="features">
-                <li>✔️ Indywidualny jadłospis dopasowany do celów</li>
-                <li>✔️ Indywidualny plan treningowy</li>
-                <li>✔️ Gotowa lista zakupów</li>
-                <li>✔️ 2 korekty jadłospisu/treningu w miesiącu</li>
-                <li>✔️ Cotygodniowe raporty i kontrola postępów</li>
-                <li>✔️ Analiza techniki</li>
-                <li>✔️ Stały kontakt</li>
-            </ul>
-            <a href="#" class="button" onclick="redirectToPayPage('classic')">Zamów teraz</a>
-        </div>
-        
-        <div class="pricing-box">
-            <h2 class="pricing-box-header">Profesjonalny</h2>
-            <div class="savings" id="pro-savings"></div>
-            <div class="price" id="pro-price">1279 PLN</div>
-            <p class="packageDesc">Pełna indywidualna opieka i maksymalna personalizacja</p>
-            <ul class="features">
-                <li>✔️ Wszystkie usługi z pakietu Klasycznego</li>
-                <li>✔️ Dodatkowe konsultacje wideo (2x w msc)</li>
-                <li>✔️ Analiza postępów w oparciu o szczegółowe dane</li>
-                <li>✔️ Materiały edukacyjne</li>
-                <li>✔️ Dodatkowe konsultacje wideo (2x w miesiącu)</li>
-            </ul>
-            <a href="#" class="button" onclick="redirectToPayPage('pro')">Zamów teraz</a>
+
+    <!-- Modalne okno komunikatu -->
+    <div class="modal-overlay" id="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2 style="color: crimson;"><strong>WAŻNE</strong></h2>
+            <p>
+                <strong>Nie przyjmuję</strong> do współpracy osób z większymi problemami zdrowotnymi, 
+                np. sibo, cukrzyca, rehab po operacji itp. (Jeśli masz z czymś kłopot upewnij się, że nie będzie to przeszkodą) <br>
+                <strong>Nie zajmuję</strong> się również przygotowaniem motorycznym pod inne sporty niż sporty siłowe.
+            </p>
         </div>
     </div>
 
-    <script>
-        function togglePayment() {
-            const isChecked = document.getElementById('payment-toggle').checked;
-            const prices = [
-                { id: 'basic', monthly: 229, upfront: 597, savings: 90 },
-                { id: 'classic', monthly: 359, upfront: 898, savings: 179 },
-                { id: 'pro', monthly: 514, upfront: 1279, savings: 263 }
-            ];
-
-            prices.forEach(pkg => {
-                document.getElementById(pkg.id + '-price').innerText = isChecked ? pkg.upfront + ' PLN' : pkg.monthly + ' PLN';
-                document.getElementById(pkg.id + '-savings').innerText = isChecked ? `Oszczędzasz ${pkg.savings} PLN!` : '';
-            });
-        }
-
-        function redirectToPayPage(packageId) {
-            const isChecked = document.getElementById('payment-toggle').checked;
-            const price = isChecked ? 
-                document.getElementById(packageId + '-price').innerText.split(' ')[0] : 
-                document.getElementById(packageId + '-price').innerText.split(' ')[0];
-            
-            window.location.href = `payPage.html?package=${packageId}&price=${price}`;
-        }
-        window.onload = togglePayment; // Ustawia domyślne ceny na płatność z góry
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

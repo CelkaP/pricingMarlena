@@ -1,0 +1,108 @@
+/* Style dla strony wyników */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f0fe;
+    margin: 0;
+    padding: 0;
+}
+#main-title{
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #3a7ca5;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.results-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 20px;
+    flex-wrap: wrap;
+}
+
+/* Pojedynczy kontener z wynikami */
+.result-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Kontener dla obrazków */
+.image-container {
+    text-align: center;
+    width: 48%;
+}
+
+/* Obrazki "przed" i "po" */
+.image-results {
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Opis poniżej zdjęcia */
+.description {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Responsywność */
+@media screen and (max-width: 768px) {
+    .result-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-container {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .image-results {
+        width: 80%;
+    }
+}
+
+/* Dodatkowe style galerii */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.image-box {
+    width: 48%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.image-gallery {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.image-gallery:hover {
+    transform: scale(1.05);
+}
+
+p {
+    margin-top: 10px;
+    color: #555;
+    font-weight: bold;
+}

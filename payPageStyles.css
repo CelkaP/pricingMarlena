@@ -1,0 +1,96 @@
+/* Style dla strony płatności */
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #3a7ca5;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.payment-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 100px auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f0fe;
+    margin: 0;
+    padding: 0;
+}
+
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.pricing-box {
+    background-color: #f0f8ff;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 260px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 580px;
+    box-sizing: border-box;
+}
+
+.pricing-box-header {
+    border-radius: 15px;
+    background-color: #87ceeb;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.price {
+    font-size: 32px;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.packageDesc {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #dbeeff;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #3a7ca5;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto;
+}
+.highlight {
+    font-weight: bold;
+    color: #3a7ca5;
+}
