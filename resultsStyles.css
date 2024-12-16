@@ -74,6 +74,10 @@ body {
     .image-results {
         width: 80%;
     }
+    #main-title {
+        margin-top: 50px; /* Dodatkowy margines pod przyciskiem */
+        font-size: 20px;
+    }
 }
 
 /* Dodatkowe style galerii */
