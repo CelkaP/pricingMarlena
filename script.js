@@ -16,6 +16,17 @@ window.onload = function () {
     }
 };
 
+// Funkcja do obliczenia procentowej oszczędności
+function calculateDiscount(oldPrice, newPrice) {
+    const oldPriceNumber = parseFloat(oldPrice.replace(' PLN', '').replace(/\s+/g, ''));
+    const newPriceNumber = parseFloat(newPrice.replace(' PLN', '').replace(/\s+/g, ''));
+    if (!isNaN(oldPriceNumber) && !isNaN(newPriceNumber)) {
+        const discount = ((oldPriceNumber - newPriceNumber) / oldPriceNumber) * 100;
+        return Math.round(discount); // Zwraca zaokrąglony wynik
+    }
+    return null;
+}
+
 // Funkcja wyświetlająca kategorię
 function loadCategory(category) {
     const categoriesContainer = document.getElementById('categories-container');
@@ -33,23 +44,23 @@ function loadCategory(category) {
     if (category === 'dieta') {
         mainTitle.innerText = 'Dieta';
         packages = [
-            { name: 'Plan Dietetyczny 3 msc', price: '609 PLN', desc: 'Wsparcie dietetyczne na 3 miesiące', key: 'dieta-3' },
-            { name: 'Plan Dietetyczny 6 msc', price: '1149 PLN', desc: 'Wsparcie dietetyczne na 6 miesięcy', key: 'dieta-6' },
-            { name: 'Plan Dietetyczny 9 msc', price: '1548 PLN', desc: 'Wsparcie dietetyczne na 9 miesięcy', key: 'dieta-9' }
+            { name: 'Plan Dietetyczny 3 msc', oldPrice: '729 PLN', price: '693 PLN', desc: 'Wsparcie dietetyczne na 3 miesiące' },
+            { name: 'Plan Dietetyczny 6 msc', oldPrice: '1329 PLN', price: '1196 PLN', desc: 'Wsparcie dietetyczne na 6 miesięcy' },
+            { name: 'Plan Dietetyczny 9 msc', oldPrice: '1760 PLN', price: '1548 PLN', desc: 'Wsparcie dietetyczne na 9 miesięcy' }
         ];
     } else if (category === 'dieta-trening') {
         mainTitle.innerText = 'Dieta + Plan Treningowy';
         packages = [
-            { name: 'Plan Dietetyczny + Plan Treningowy 3 msc', price: '900 PLN', desc: 'Dieta i trening na 3 miesiące', key: 'trening-3' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 6 msc', price: '1738 PLN', desc: 'Dieta i trening na 6 miesięcy', key: 'trening-6' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 9 msc', price: '2589 PLN', desc: 'Dieta i trening na 9 miesięcy', key: 'trening-9' }
+            { name: 'Plan Dietetyczny + Plan Treningowy 3 msc', oldPrice: '945 PLN', price: '900 PLN', desc: 'Dieta i trening na 3 miesiące' },
+            { name: 'Plan Dietetyczny + Plan Treningowy 6 msc', oldPrice: '1913 PLN', price: '1738 PLN', desc: 'Dieta i trening na 6 miesięcy' },
+            { name: 'Plan Dietetyczny + Plan Treningowy 9 msc', oldPrice: '2978 PLN', price: '2589 PLN', desc: 'Dieta i trening na 9 miesięcy' }
         ];
     } else if (category === 'jednorazowe') {
         mainTitle.innerText = 'Jednorazowe';
         packages = [
-            { name: 'Jednorazowy Jadłospis', price: '150 PLN', desc: 'Jednorazowy jadłospis na 7 dni dopasowany do twoich potrzeb<br><br> Gotowa lista zakupów <br><br> (Opcjonalnie) Korekta jadłospisu - 50 zł', key: 'jednorazowy' },
-            { name: 'Plan Dietetyczny 1 msc', price: '225 PLN', desc: 'Plan dietetyczny na 1 miesiąc<br><br>Gotowa lista zakupów', key: 'plan-1' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 1 msc', price: '350 pln', desc: 'Plan dietetyczny dopasowany pod twoje cele<br><br>Plan treningowy<br><br>Gotowa lista zakupów'}
+            { name: 'Jednorazowy Jadłospis', price: '150 PLN', desc: 'Jednorazowy jadłospis na 7 dni dopasowany do twoich potrzeb<br><br> Gotowa lista zakupów' },
+            { name: 'Plan Dietetyczny 1 msc', price: '225 PLN', desc: 'Plan dietetyczny na 1 miesiąc<br><br>Gotowa lista zakupów' },
+            { name: 'Plan Dietetyczny + Plan Treningowy 1 msc', price: '350 PLN', desc: 'Plan dietetyczny dopasowany pod twoje cele<br><br>Plan treningowy<br><br>Gotowa lista zakupów' }
         ];
     }
 
@@ -57,9 +68,22 @@ function loadCategory(category) {
     packages.forEach(pkg => {
         const box = document.createElement('div');
         box.className = 'pricing-box';
+
+        let discountHTML = '';
+        if (pkg.oldPrice) {
+            const discount = calculateDiscount(pkg.oldPrice, pkg.price);
+            if (discount) {
+                discountHTML = `<div class="discount-badge">${discount}% taniej</div>`;
+            }
+        }
+
         box.innerHTML = `
+            ${discountHTML}
             <h2 class="pricing-box-header">${pkg.name}</h2>
-            <div class="price">${pkg.price}</div>
+            <div class="price-container">
+                ${pkg.oldPrice ? `<span class="old-price">${pkg.oldPrice}</span>` : ''}
+                <span class="new-price">${pkg.price}</span>
+            </div>
             <p class="packageDesc">${pkg.desc}</p>
             <a href="payPage.html?name=${encodeURIComponent(pkg.name)}&price=${encodeURIComponent(pkg.price)}" class="button">Zamów teraz</a>
         `;
@@ -68,6 +92,7 @@ function loadCategory(category) {
 
     pricingContainer.classList.remove('hidden');
 }
+
 
 // Funkcja do obsługi powrotu
 function goBack() {
@@ -86,6 +111,7 @@ function goBack() {
 function loadResults() {
     window.location.href = 'results.html';
 }
+
 
 // Funkcja do otwierania modala po kliknięciu w gif powiadomienia
 function handleGifClick() {

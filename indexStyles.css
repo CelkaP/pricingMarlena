@@ -134,6 +134,22 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s;
+    position: relative;
+}
+
+/* Styl dla procentowej oszczędności */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4f; /* Czerwony kolor */
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
 .pricing-box:hover {
@@ -151,6 +167,27 @@ body {
     color: #333;
     font-weight: bold;
 }
+
+.price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.old-price {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.new-price {
+    font-size: 20px;
+    color: #3a7ca5;
+    font-weight: bold;
+}
+
 
 .packageDesc {
     font-size: 14px;
