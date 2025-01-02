@@ -44,23 +44,21 @@ function loadCategory(category) {
     if (category === 'dieta') {
         mainTitle.innerText = 'Dieta';
         packages = [
-            { name: 'Plan Dietetyczny 3 msc', oldPrice: '729 PLN', price: '693 PLN', desc: 'Wsparcie dietetyczne na 3 miesiące' },
-            { name: 'Plan Dietetyczny 6 msc', oldPrice: '1329 PLN', price: '1196 PLN', desc: 'Wsparcie dietetyczne na 6 miesięcy' },
-            { name: 'Plan Dietetyczny 9 msc', oldPrice: '1760 PLN', price: '1548 PLN', desc: 'Wsparcie dietetyczne na 9 miesięcy' }
+            { name: 'Plan Dietetyczny 1 msc', oldPrice: '237 PLN', price: '225 PLN', desc: 'Wsparcie dietetyczne na 1 miesiąc' },
+            { name: 'Plan Dietetyczny 3 msc', oldPrice: '667 PLN', price: '600 PLN', desc: 'Wsparcie dietetyczne na 3 miesiące' },
+            { name: 'Plan Dietetyczny 6 msc', oldPrice: '1375 PLN', price: '1100 PLN', desc: 'Wsparcie dietetyczne na 6 miesięcy' }
         ];
     } else if (category === 'dieta-trening') {
         mainTitle.innerText = 'Dieta + Plan Treningowy';
         packages = [
-            { name: 'Plan Dietetyczny + Plan Treningowy 3 msc', oldPrice: '945 PLN', price: '900 PLN', desc: 'Dieta i trening na 3 miesiące' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 6 msc', oldPrice: '1913 PLN', price: '1738 PLN', desc: 'Dieta i trening na 6 miesięcy' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 9 msc', oldPrice: '2978 PLN', price: '2589 PLN', desc: 'Dieta i trening na 9 miesięcy' }
+            { name: 'Plan Dietetyczny + Plan Treningowy 1 msc', oldPrice: '368 PLN', price: '350 PLN', desc: 'Dieta i trening na 1 miesiąc' },
+            { name: 'Plan Dietetyczny + Plan Treningowy 3 msc', oldPrice: '1000 PLN', price: '900 PLN', desc: 'Dieta i trening na 3 miesiące' },
+            { name: 'Plan Dietetyczny + Plan Treningowy 6 msc', oldPrice: '2063 PLN', price: '1650 PLN', desc: 'Dieta i trening na 6 miesięcy' }
         ];
     } else if (category === 'jednorazowe') {
         mainTitle.innerText = 'Jednorazowe';
         packages = [
-            { name: 'Jednorazowy Jadłospis', price: '150 PLN', desc: 'Jednorazowy jadłospis na 7 dni dopasowany do twoich potrzeb<br><br> Gotowa lista zakupów' },
-            { name: 'Plan Dietetyczny 1 msc', price: '225 PLN', desc: 'Plan dietetyczny na 1 miesiąc<br><br>Gotowa lista zakupów' },
-            { name: 'Plan Dietetyczny + Plan Treningowy 1 msc', price: '350 PLN', desc: 'Plan dietetyczny dopasowany pod twoje cele<br><br>Plan treningowy<br><br>Gotowa lista zakupów' }
+            { name: 'Jednorazowy Jadłospis na tydzień', price: '150 PLN', desc: 'Jednorazowy jadłospis na 7 dni dopasowany do twoich potrzeb<br><br> Gotowa lista zakupów' },
         ];
     }
 
